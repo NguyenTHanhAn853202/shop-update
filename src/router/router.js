@@ -1,5 +1,6 @@
 // import Home from '~/Component/page/home';
 import { lazy } from 'react';
+const MyOrder = lazy(()=>import('~/Component/page/myOrder'));
 const CreateAccount = lazy(() => import('~/Component/pageManager/createAccount'));
 const SeeOrder = lazy(() => import('~/Component/pageEmployee/seeOrder'));
 const Payment = lazy(() => import('~/Component/page/payment'));
@@ -90,6 +91,10 @@ export const layoutPublic = [
     {
         element: Collection,
         path: '/bo-suu-tap',
+    },
+    {
+        element:MyOrder,
+        path:'/my-order'
     },
     {
         element: Store,

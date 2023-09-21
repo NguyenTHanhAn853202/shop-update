@@ -71,6 +71,12 @@ a[href] {
 textarea{
     font:inherit
 }
+a[href]:hover{
+    color: black;
+}
+ul{
+    list-style: none;
+}
 
 h1,
 h2,

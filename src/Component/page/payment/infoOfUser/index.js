@@ -3,42 +3,50 @@ import classNames from 'classnames/bind';
 import { createRef, forwardRef, useMemo, useRef, useState } from 'react';
 import NotifyContainer, { notify } from '~/utils/notification';
 import Cookies from 'universal-cookie';
+import InputInfoUser from '~/Component/inputInfoUser';
 
 const cookies = new Cookies();
 
 const cx = classNames.bind(styles);
-const listMenu = [
-    {
-        title: 'Họ và tên* ',
-        require: true,
-        defaultValue: cookies.get('name'),
-        placeholder: 'Nguyen Thanh An',
-        type: 'text',
-        kindof: 'name',
-    },
-    {
-        title: 'Số điện thoại*',
-        require: true,
-        defaultValue: cookies.get('phoneNumber'),
-        placeholder: '0123456789',
-        type: 'tel',
-        kindof: 'phone',
-    },
-    {
-        title: 'Địa chỉ*',
-        require: true,
-        defaultValue: cookies.get('address'),
-        placeholder: 'Phường A, Quận B, Huyện C...',
-        type: 'text',
-        kindof: 'address',
-    },
-    { title: 'Ghi chú', require: false, defaultValue: null, placeholder: 'ghi chú', type: 'text', kindof: 'note' },
-];
 
-function InfoOfUser({ datas, check }, refs) {
-    const [inputValid, setInputValid] = useState(['true', 'true', 'true', 'true']);
-    // const { name, address, phone } = datas;
 
+function InfoOfUser({ datas, check,setAddress,address,setAddressName }, refs) {
+    const [inputValid, setInputValid] = useState(['true', 'true', 'true', 'true','true']);
+    const listMenu = [
+        {
+            title: 'Họ và tên* ',
+            require: true,
+            defaultValue: cookies.get('name'),
+            placeholder: 'Nguyen Thanh An',
+            type: 'text',
+            kindof: 'name',
+            index:1,
+        },
+        {
+            title: 'Số điện thoại*',
+            require: true,
+            defaultValue: cookies.get('phoneNumber'),
+            placeholder: '0123456789',
+            type: 'tel',
+            kindof: 'phone',
+            index:2
+        },
+        {
+            title: 'Địa chỉ*',
+            require:true,
+            Tag:<InputInfoUser setAddressName={setAddressName} address={address} setAddress={setAddress} key={'địa chỉ'} />
+        },
+        {
+            title: 'Địa chỉ cụ thể*',
+            require: true,
+            defaultValue: cookies.get('address'),
+            placeholder: 'Phường A, Quận B, Huyện C...',
+            type: 'text',
+            kindof: 'address',
+            index:3
+        },
+        { title: 'Ghi chú', require: false, defaultValue: null, placeholder: 'ghi chú', type: 'text', kindof: 'note',index:4 },
+    ];
     // supporting function
 
     const validInput = (index, value) => {
@@ -76,12 +84,13 @@ function InfoOfUser({ datas, check }, refs) {
         <div className={cx('wrapper')}>
             <NotifyContainer />
             {listMenu.map((item, index) => {
-                return (
+                return item.title === 'Địa chỉ*'?item.Tag:(
+                    
                     <div key={index} className={cx('contain-input')}>
                         <label htmlFor={cx(`input${index}`)}>{item.title}</label>
                         <input
                             index={index}
-                            ref={refs[index]}
+                            ref={refs[item.index-1]}
                             className={cx({
                                 error: inputValid[index] ? false : true,
                             })}

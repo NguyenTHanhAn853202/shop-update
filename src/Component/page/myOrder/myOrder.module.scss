@@ -1,0 +1,21 @@
+.wrapper{
+    min-height: 200px;
+    padding: 50px;
+    h1{
+        text-align: center;
+        padding-bottom: 30px;
+    }
+    .container{
+        width: 90%;
+        margin: auto;
+    }
+    select{
+        border-radius: 7px;
+        padding: 3px 7px;
+        margin-bottom: 10px;
+    }
+    .contain-select{
+        display: flex;
+        justify-content: flex-end;
+    }
+}

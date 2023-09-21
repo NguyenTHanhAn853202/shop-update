@@ -10,6 +10,7 @@ import NotifyContainer, { notify } from '~/utils/notification';
 import { payment } from '~/api-server/payment';
 import { CART } from '~/GlobalContext/key';
 import PaypalButton from './PayPalButton';
+import InputInfoUser from '~/Component/inputInfoUser';
 
 const cx = classNames.bind(styles);
 
@@ -21,6 +22,18 @@ function Payment() {
     const [typeOfPayment, setTypeOfPayment] = useState('after');
     const [{ cart }, dispatch] = useContext(Context);
     const refcodeDiscount = useRef();
+    const [addressName,setAddressName] = useState('');
+    const [address,setAddress] = useState({
+        province:'',
+        district:'',
+        village:''
+    })
+    const [info,setInfo] = useState({
+        toName:'',
+        toPhoneNumber:'',
+        toSpecificAddress:'',
+        note:''
+    })
     const refInfoUser = useMemo(() => {
         const refs = [];
         for (let index = 0; index < 4; index++) {
@@ -32,8 +45,7 @@ function Payment() {
     useEffect(() => {
         if (agree) {
             (async () => {
-                const data = await payment(choosedProducts, typeOfPayment, codeDiscount);
-               
+                const data = await payment(choosedProducts, typeOfPayment, codeDiscount,info,address,addressName);
                 dispatch({ key: CART, value: data });
                 notify('success', 'Đặt hàng thành công');
                 setAgree(false);
@@ -45,13 +57,6 @@ function Payment() {
     // function handle event
     const handleClickPayment = async () => {
         const infoUser = [];
-        if (choosedProducts.length > 0) {
-            setIsShow(true);
-        } else {
-            setIsShow(false);
-            notify('warning', 'chưa có sản phẩm nào được chọn', {});
-            return;
-        }
         const mapCheckErrorInput = refInfoUser.reduce((first, item, index) => {
             const element = item.current;
             if (element.value.trim() === '' && element.getAttribute('kindof') !== 'note') {
@@ -68,15 +73,34 @@ function Payment() {
         }, true);
         if (!mapCheckErrorInput) {
             notify('warning', 'Vui lòng nhập đủ thông tin');
+            return;
         }
+        
+        if (choosedProducts.length > 0) {
+            setIsShow(true);
+        } else {
+            setIsShow(false);
+            notify('warning', 'chưa có sản phẩm nào được chọn', {});
+            return;
+        }
+        setInfo({
+            toName:refInfoUser[0].current.value,
+            toPhoneNumber:refInfoUser[1].current.value,
+            toSpecificAddress:refInfoUser[2].current.value,
+            note:refInfoUser[3].current.value
+        })
+        
         setCodeDiscount(refcodeDiscount.current?.value);
         setTypeOfPayment(typeOfPayment);
         // call API
     };
+    console.log(refInfoUser);
+
 
     return (
         <div className={cx('wrapper', { wrap: true })}>
             <NotifyContainer />
+           
             {isShow && (
                 <Default
                     title={'Xác nhận'}
@@ -88,7 +112,7 @@ function Payment() {
             <div className={cx('contain', { grid: true })}>
                 <div className={cx('layout')}>
                     <div style={{ width: '377px', overflow: 'hidden' }}>
-                        <InfoOfUser ref={refInfoUser} />
+                        <InfoOfUser setAddressName={setAddressName} address={address} setAddress={setAddress}  ref={refInfoUser} />
                     </div>
                     <span className={cx('line-border')}></span>
                     <div style={{ width: '377px', overflow: 'hidden' }}>

@@ -69,7 +69,7 @@ function Search() {
                                 <img src={product.image} alt={product.name} />
                                 <div>
                                     <h4>{product.name}</h4>
-                                    <span>{`$${product.price}`}</span>
+                                    <span>{`${product.price} VNĐ`}</span>
                                 </div>
                             </Link>
                         </li>

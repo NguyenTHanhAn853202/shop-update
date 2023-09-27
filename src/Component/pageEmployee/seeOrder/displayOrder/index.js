@@ -4,13 +4,12 @@ import Card from './card';
 
 const cx = classNames.bind(styles);
 
-function DisplayOrder({ data }) {
+function DisplayOrder({ data,setRender }) {
     return (
         <div className={cx('wrapper')}>
             <ul>
                 <li className={cx('title')}>Thông tin đơn hàng</li>
                 {data.map((item, index) => {
-                    console.log(item);
                     return (
                         <li key={item._id}>
                             <Card
@@ -19,6 +18,7 @@ function DisplayOrder({ data }) {
                                 user={item?.infoOfUser}
                                 order={item?.infoOfOder}
                                 item={item}
+                                setRender={setRender}
                             />
                         </li>
                     );

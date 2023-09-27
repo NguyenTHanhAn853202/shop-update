@@ -60,6 +60,7 @@ function Begin() {
                                             <>
                                                 <Link to={'/upload-product'}>Cập nhật sản phẩm</Link>
                                                 <Link to={'/see-order'}>Xác nhận đơn hàng</Link>
+                                                <Link to={'/thong-ke'}>Thống kê</Link>
                                             </>
                                         )}
                                         {localStorage.role === 'manager' && (
@@ -67,6 +68,7 @@ function Begin() {
                                                 <Link to={'/quan-ly/tao-tai-khoan'}>Tạo tài khoản cho nhân viên</Link>
                                                 <Link to={'/quan-ly/vo-hieu-hoa-tai-khoan'}>Vô hiệu hóa tài</Link>
                                                 <Link to={'/quan-ly/danh-muc'}>Chỉnh sữa danh mục</Link>
+                                                
                                             </>
                                         )}
                                         <Link to='doi-mat-khau'>Đổi mật khẩu</Link>

@@ -1,6 +1,7 @@
 // import Home from '~/Component/page/home';
 import { lazy } from 'react';
 const MyOrder = lazy(()=>import('~/Component/page/myOrder'));
+const Statistic = lazy(() => import('~/Component/pageEmployee/statistic'))
 const CreateAccount = lazy(() => import('~/Component/pageManager/createAccount'));
 const SeeOrder = lazy(() => import('~/Component/pageEmployee/seeOrder'));
 const Payment = lazy(() => import('~/Component/page/payment'));
@@ -20,6 +21,7 @@ const UploadProduct = lazy(() => import('~/Component/page/uploadProduct'));
 const DisableAccount = lazy(() => import('~/Component/page/disableAccount'));
 const ChangePassword = lazy(() => import('~/Component/page/changePassword'));
 const Category = lazy(() => import('~/Component/page/category'))
+
 
 export const layoutPrivate = [
     {
@@ -54,6 +56,10 @@ export const layout_employee_manager = [
         element: SeeOrder,
         path: '/see-order',
     },
+    {
+        element: Statistic,
+        path:'thong-ke'
+    }
 ];
 
 export const layoutManager = [

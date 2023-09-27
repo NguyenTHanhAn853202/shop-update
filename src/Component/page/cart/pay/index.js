@@ -34,7 +34,7 @@ function Pay({ totalCost }) {
                 <tbody className={cx('table-body')}>
                     <tr>
                         <td className={cx('left')}>Tổng phụ</td>
-                        <td className={cx('right')}>$0</td>
+                        <td className={cx('right')}>0 VNĐ</td>
                     </tr>
                     <tr className={cx('delivery')}>
                         <td className={cx('left')}>Giao hàng</td>
@@ -58,7 +58,7 @@ function Pay({ totalCost }) {
                     </tr>
                     <tr>
                         <td className={cx('left')}>Tổng</td>
-                        <td className={cx('right')}>{`$${totalCost}`}</td>
+                        <td className={cx('right')}>{`${totalCost} VNĐ`}</td>
                     </tr>
                     <tr>
                         <td className={cx('pay')} colSpan={2}>

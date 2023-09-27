@@ -77,7 +77,7 @@ function Bag({ setAgree, setIsShow, agree }, ref) {
                                     </div>
                                     <div className={cx('info-sell')}>
                                         <span className={cx('amount')}>{`${item.number} × `}</span>
-                                        <span className={cx('price')}>{`$${item.price}`}</span>
+                                        <span className={cx('price')}>{`${item.price} VNĐ`}</span>
                                         
                                     </div>
                                     <h4 className={cx('size')}>{`Size: ${item?.size}`}</h4>

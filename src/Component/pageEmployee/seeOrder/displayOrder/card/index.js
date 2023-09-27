@@ -7,7 +7,7 @@ import { createItem, getDistrict } from '~/api-server/GHN';
 
 const cx = classNames.bind(styles);
 
-function Card({ user, order, idOrder,item }) {
+function Card({ user, order, idOrder,item,setRender }) {
     const { name, avatar } = user;
     const [products, setProducts] = useState(order);
     const weightRef = useRef()
@@ -18,7 +18,7 @@ function Card({ user, order, idOrder,item }) {
 
 
     const handleClickConfirm = async (itemProduct, i,item) => {
-            console.log(item);
+            
         if (products.length > 0 && weightRef.current.value !=='' && heightRef.current.value !==''
             && widthRef.current.value !=='' && lengthRef.current.value !==''
         ) {
@@ -30,8 +30,8 @@ function Card({ user, order, idOrder,item }) {
             if(data.data.code ===200){
                 const orderCode = data.data.data.order_code
                 const dataConfirm = await confirm(idOrder, itemProduct._id,orderCode);
+                setRender(props=>(!props))
                 setProducts((props) => {
-                    console.log(props.splice(i, 1));
                     return props.splice(i, 1);
                 });
             }

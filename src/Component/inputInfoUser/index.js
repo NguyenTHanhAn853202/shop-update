@@ -30,7 +30,7 @@ function InputInfoUser({address,setAddress,setAddressName}) {
         const district = element[0]*1
         element.shift()
         setAddressName(props=>{
-            console.log(props);
+            
             return element.join(' ')+ ' - ' + props
         })
         setAddress((props)=>{

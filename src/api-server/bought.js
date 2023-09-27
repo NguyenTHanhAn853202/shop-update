@@ -12,3 +12,15 @@ export const myBought = async ()=>{
         console.log(error);
     }
 }
+
+export const  statistic = async(year)=>{
+    try {
+        const data = await request.post('bought/list-bought',{
+           year:year,
+           id:localStorage.id
+        })
+        return data.data
+    } catch (error) {
+        console.log(error);
+    }
+}

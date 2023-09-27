@@ -65,7 +65,7 @@ function InfoOfProduct({ typePayment, chooseProduct, type }, ref) {
                                     <img src={item?.image} />
                                     <div className={cx('info-of-product')}>
                                         <h4>{product?.name}</h4>
-                                        <h5>{`Size: ${item.size} - $${item?.price} × ${item.number} `}</h5>
+                                        <h5>{`Size: ${item.size} - ${item?.price} VNĐ × ${item.number} `}</h5>
                                         <h5>{``}</h5>
                                     </div>
                                 </Link>
@@ -90,15 +90,15 @@ function InfoOfProduct({ typePayment, chooseProduct, type }, ref) {
                 <tbody>
                     <tr>
                         <td colSpan={3}>Tổng chi phí: </td>
-                        <td className={cx('t-r')}>${cost}</td>
+                        <td className={cx('t-r')}>{cost} VNĐ</td>
                     </tr>
                     <tr>
                         <td colSpan={3}>Giảm: </td>
-                        <td className={cx('t-r')}>${discount}</td>
+                        <td className={cx('t-r')}>{discount} VNĐ</td>
                     </tr>
                     <tr>
                         <td colSpan={3}>Tiền phải trả: </td>
-                        <td className={cx('t-r')}>${cost - discount}</td>
+                        <td className={cx('t-r')}>{cost - discount} VNĐ</td>
                     </tr>
                     <tr>
                         <td colSpan={3}>phương thức thanh toán: </td>

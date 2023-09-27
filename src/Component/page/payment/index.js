@@ -94,7 +94,6 @@ function Payment() {
         setTypeOfPayment(typeOfPayment);
         // call API
     };
-    console.log(refInfoUser);
 
 
     return (

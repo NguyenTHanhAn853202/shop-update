@@ -71,7 +71,7 @@ function MyOrder() {
                 <th colSpan={1} scope="row">{index+1}</th> 
                     <td colSpan={2}><img style={{width:'100px',objectFit:'cover'}} src={item.image} /></td>
                     <td colSpan={5}>{item.idProduct.name}</td>
-                    <td colSpan={2}>{`${item.number} x ${item.price} = ${item.price*item.number}`}</td>
+                    <td colSpan={2}>{`${item.number} x ${item.price} = ${item.price*item.number} VNĐ`}</td>
                     <td colSpan={1}>{status}</td>
                 </tr>
             })}

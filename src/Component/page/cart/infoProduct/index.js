@@ -90,6 +90,7 @@ function InfoProduct({ data }) {
                 </thead>
                 <tbody>
                     {cart.map((item, index) => {
+                       
                         const to = `/san-pham/${item?.idProduct.slug}`;
                         const Tag = item.image?.includes('.mp4')?'video':'img'
                         return (
@@ -109,7 +110,7 @@ function InfoProduct({ data }) {
                                         {item?.idProduct?.name}
                                     </Link>
                                 </td>
-                                <td className={cx('tac', 'fw6')}>{`$${item?.price}`}</td>
+                                <td className={cx('tac', 'fw6')}>{`${item?.price} VNĐ`}</td>
                                 <td className={cx('size', 'tac')}>{item.size}</td>
                                 <td className={cx('size', 'tac')}>{item.color}</td>
                                 <td className={cx('tac')}>
@@ -120,7 +121,7 @@ function InfoProduct({ data }) {
                                         setNumber={setNumber}
                                     />
                                 </td>
-                                <td className={cx('tar', 'fw6')}>{`$${item.number * item?.price}`}</td>
+                                <td className={cx('tar', 'fw6')}>{`${item.number * item?.price} VNĐ`}</td>
                             </tr>
                         );
                     })}
